@@ -1,6 +1,12 @@
 #include<iostream>
-using namespace std;
+#include <string>
+#include <vector>
+#include <windows.h>
+#include <sql.h>
+#include <sqlext.h>
+#include <fstream>
 
+using namespace std;
 
 //===========================================
 //1.Person Classs
@@ -104,6 +110,27 @@ public:
 		  return salary;
 	  }
 
+	  //create store function and display function using fstream to store and retrieve data in employee file
+
+	  void storeEmployee(){
+		  ofstream outFile("employee.txt", ios::app);
+		  if (outFile.is_open()) {
+			  outFile << "Employee ID: " << employeeId << endl;
+			  outFile << "Name: " << getName() << endl;
+			  outFile << "Age: " << getAge() << endl;
+			  outFile << "Address: " << getAddress() << endl;
+			  outFile << "Phone Number: " << getPhoneNumber() << endl;
+			  outFile << "Salary: " << salary << endl;
+			  outFile << "Date Of Joining: " << dateOfJoining << endl;
+			  outFile << "--------------------------" << endl;
+			  outFile.close();
+			  cout << "Employee data stored successfully." << endl;
+		  }
+		  else {
+			  cout << "Unable to open file for writing." << endl;
+		  }
+	  }
+	  void displayEmployee();
 
 	  // Overriding displayInfo() from Person
 
@@ -240,3 +267,6 @@ public:
 
 
 };
+
+
+
